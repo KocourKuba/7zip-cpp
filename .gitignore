@@ -16,14 +16,18 @@
 *.suo
 *.lastbuildstate
 *.user
-.vs/
-ipch/
+/.vs
+/ipch
 
 # Compilation Directories
-Lib/
-Exe/
-Intermediate/
-dll/
+/Lib
+/Exe
+/7Zip/Intermediate
+/dll
+/Debug Unicode/
+/Debug/
+/Release Unicode
+/Release
 **/x64/
 
 # Misc
