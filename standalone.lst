@@ -1,0 +1,16 @@
+7zpp.h
+7zpp_autolink.h
+CompressionFormat.h
+CompressionLevel.h
+Enum.h
+FileInfo.h
+ListCallback.h
+ProgressCallback.h
+SevenString.h
+SevenZipArchive.h
+SevenZipCompressor.h
+SevenZipException.h
+SevenZipExtractor.h
+SevenZipLibrary.h
+SevenZipLister.h
+SevenZipWrapper.h

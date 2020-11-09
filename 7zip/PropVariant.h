@@ -37,6 +37,7 @@ namespace SevenZip
 			CPropVariant& operator=(bool bSrc);
 			CPropVariant& operator=(Byte value);
 			CPropVariant& operator=(Int16 value);
+			CPropVariant& operator=(UInt16 value);
 			CPropVariant& operator=(Int32 value);
 			CPropVariant& operator=(UInt32 value);
 			CPropVariant& operator=(Int64 value);

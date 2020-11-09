@@ -8,3 +8,4 @@
 #include <vector>
 #include <deque>
 #include "SevenString.h"
+#include "7zpp_autolink.h"

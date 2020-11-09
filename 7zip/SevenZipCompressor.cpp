@@ -69,7 +69,7 @@ namespace SevenZip
 		return true;
 	}
 
-	bool SevenZipCompressor::DoCompress(ProgressCallback* callback /*= nullptr*/)
+	bool SevenZipCompressor::DoCompress(IProgressCallback* callback /*= nullptr*/)
 	{
 		if (m_fileList.empty())
 		{
@@ -127,7 +127,7 @@ namespace SevenZip
 	CComPtr< IStream > SevenZipCompressor::OpenArchiveStream() const
 	{
 		CComPtr< IStream > fileStream = FileSys::OpenFileToWrite(m_archivePath);
-		if (fileStream == NULL)
+		if (fileStream == nullptr)
 		{
 			return nullptr;
 		}

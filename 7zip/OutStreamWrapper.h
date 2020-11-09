@@ -12,13 +12,13 @@ namespace SevenZip
 		{
 		private:
 
-			long				m_refCount;
+			long				m_refCount = 0;
 			CComPtr< IStream >	m_baseStream;
 
 		public:
 
 			OutStreamWrapper(const CComPtr< IStream >& baseStream);
-			virtual ~OutStreamWrapper();
+			virtual ~OutStreamWrapper() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);
 			STDMETHOD_(ULONG, AddRef)();

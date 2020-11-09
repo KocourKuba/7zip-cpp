@@ -59,11 +59,9 @@ namespace SevenZip
 			vt = VT_BSTR;
 			wReserved1 = 0;
 			bstrVal = ::SysAllocString(lpszSrc);
-			if (bstrVal == NULL && lpszSrc != NULL)
+			if (bstrVal == nullptr && lpszSrc != nullptr)
 			{
 				throw kMemException;
-				// vt = VT_ERROR;
-				// scode = E_OUTOFMEMORY;
 			}
 			return *this;
 		}
@@ -75,18 +73,14 @@ namespace SevenZip
 			vt = VT_BSTR;
 			wReserved1 = 0;
 			UINT len = (UINT)strlen(s);
-			bstrVal = ::SysAllocStringByteLen(0, (UINT)len * sizeof(OLECHAR));
-			if (bstrVal == NULL)
+			bstrVal = ::SysAllocStringByteLen(nullptr, (UINT)len * sizeof(OLECHAR));
+			if (bstrVal == nullptr)
 			{
 				throw kMemException;
-				// vt = VT_ERROR;
-				// scode = E_OUTOFMEMORY;
 			}
-			else
-			{
-				for (UINT i = 0; i <= len; i++)
+
+			for (UINT i = 0; i <= len; i++)
 					bstrVal[i] = s[i];
-			}
 			return *this;
 		}
 
@@ -101,19 +95,95 @@ namespace SevenZip
 			return *this;
 		}
 
-#define SET_PROP_FUNC(type, id, dest) \
-  CPropVariant& CPropVariant::operator=(type value) \
-  { if (vt != id) { InternalClear(); vt = id; } \
-	dest = value; return *this; }
+		CPropVariant& CPropVariant::operator=(Byte value)
+		{
+			if (vt != VT_UI1)
+			{
+				InternalClear();
+				vt = VT_UI1;
+			}
+			bVal = value;
+			return *this;
+		}
 
-		SET_PROP_FUNC(Byte, VT_UI1, bVal)
-			SET_PROP_FUNC(Int16, VT_I2, iVal)
-			SET_PROP_FUNC(Int32, VT_I4, lVal)
-			SET_PROP_FUNC(UInt32, VT_UI4, ulVal)
-			SET_PROP_FUNC(UInt64, VT_UI8, uhVal.QuadPart)
-			SET_PROP_FUNC(const FILETIME &, VT_FILETIME, filetime)
+		CPropVariant& CPropVariant::operator=(Int16 value)
+		{
+			if (vt != VT_I2)
+			{
+				InternalClear();
+				vt = VT_I2;
+			}
+			iVal = value;
+			return *this;
+		}
 
-			static HRESULT MyPropVariantClear(PROPVARIANT *prop)
+		CPropVariant& CPropVariant::operator=(UInt16 value)
+		{
+			if (vt != VT_UI2)
+			{
+				InternalClear();
+				vt = VT_UI2;
+			}
+			uiVal = value;
+			return *this;
+		}
+
+		CPropVariant& CPropVariant::operator=(Int32 value)
+		{
+			if (vt != VT_I4)
+			{
+				InternalClear();
+				vt = VT_I4;
+			}
+			lVal = value;
+			return *this;
+		}
+
+		CPropVariant& CPropVariant::operator=(UInt32 value)
+		{
+			if (vt != VT_UI4)
+			{
+				InternalClear();
+				vt = VT_UI4;
+			}
+			ulVal = value;
+			return *this;
+		}
+
+		CPropVariant& CPropVariant::operator=(Int64 value)
+		{
+			if (vt != VT_I8)
+			{
+				InternalClear();
+				vt = VT_I8;
+			}
+			hVal.QuadPart = value;
+			return *this;
+		}
+
+		CPropVariant& CPropVariant::operator=(UInt64 value)
+		{
+			if (vt != VT_UI8)
+			{
+				InternalClear();
+				vt = VT_UI8;
+			}
+			uhVal.QuadPart = value;
+			return *this;
+		}
+
+		CPropVariant& CPropVariant::operator=(const FILETIME &value)
+		{
+			if (vt != VT_FILETIME)
+			{
+				InternalClear();
+				vt = VT_FILETIME;
+			}
+			filetime = value;
+			return *this;
+		}
+
+		static HRESULT MyPropVariantClear(PROPVARIANT *prop)
 		{
 			switch (prop->vt)
 			{

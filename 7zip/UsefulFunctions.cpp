@@ -9,7 +9,7 @@ namespace SevenZip
 
 	const GUID* UsefulFunctions::GetCompressionGUID(const CompressionFormatEnum& format)
 	{
-		const GUID* guid = NULL;
+		const GUID* guid = nullptr;
 
 		switch (format)
 		{
@@ -79,10 +79,9 @@ namespace SevenZip
 	{
 		CComPtr< IStream > fileStream = FileSys::OpenFileToRead(archivePath);
 
-		if (fileStream == NULL)
+		if (fileStream == nullptr)
 		{
 			return false;
-			//throw SevenZipException( StrFmt( _T( "Could not open archive \"%s\"" ), m_archivePath.c_str() ) );
 		}
 
 		CComPtr< IInArchive > archive = UsefulFunctions::GetArchiveReader(library, format);
@@ -94,11 +93,10 @@ namespace SevenZip
 		CComPtr< InStreamWrapper > inFile = new InStreamWrapper(fileStream);
 		CComPtr< ArchiveOpenCallback > openCallback = new ArchiveOpenCallback(password);
 
-		HRESULT hr = archive->Open(inFile, 0, openCallback);
+		HRESULT hr = archive->Open(inFile, nullptr, openCallback);
 		if (hr != S_OK)
 		{
 			return false;
-			//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 		}
 
 		UInt32 mynumofitems;
@@ -106,7 +104,6 @@ namespace SevenZip
 		if (hr != S_OK)
 		{
 			return false;
-			//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 		}
 		numberofitems = size_t(mynumofitems);
 
@@ -120,10 +117,9 @@ namespace SevenZip
 	{
 		CComPtr< IStream > fileStream = FileSys::OpenFileToRead(archivePath);
 
-		if (fileStream == NULL)
+		if (fileStream == nullptr)
 		{
 			return false;
-			//throw SevenZipException( StrFmt( _T( "Could not open archive \"%s\"" ), m_archivePath.c_str() ) );
 		}
 
 		CComPtr< IInArchive > archive = UsefulFunctions::GetArchiveReader(library, format);
@@ -135,11 +131,10 @@ namespace SevenZip
 		CComPtr< InStreamWrapper > inFile = new InStreamWrapper(fileStream);
 		CComPtr< ArchiveOpenCallback > openCallback = new ArchiveOpenCallback(password);
 
-		HRESULT hr = archive->Open(inFile, 0, openCallback);
+		HRESULT hr = archive->Open(inFile, nullptr, openCallback);
 		if (hr != S_OK)
 		{
 			return false;
-			//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 		}
 
 		UInt32 mynumofitems;
@@ -147,7 +142,6 @@ namespace SevenZip
 		if (hr != S_OK)
 		{
 			return false;
-			//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 		}
 		numberofitems = size_t(mynumofitems);
 
@@ -165,7 +159,6 @@ namespace SevenZip
 			if (hr != S_OK)
 			{
 				return false;
-				//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 			}
 
 			int size = prop.intVal;
@@ -176,7 +169,6 @@ namespace SevenZip
 			if (hr != S_OK)
 			{
 				return false;
-				//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 			}
 
 			//valid string? pass back the found value and call the callback function if set
@@ -196,32 +188,31 @@ namespace SevenZip
 	{
 		CComPtr< IStream > fileStream = FileSys::OpenFileToRead(archivePath);
 
-		if (fileStream == NULL)
+		if (fileStream == nullptr)
 		{
 			return false;
-			//throw SevenZipException( StrFmt( _T( "Could not open archive \"%s\"" ), m_archivePath.c_str() ) );
 		}
 
 		std::vector<CompressionFormatEnum> myAvailableFormats;
 
 		// Add more formats here if 7zip supports more formats in the future
-		myAvailableFormats.push_back(CompressionFormat::Zip);
-		myAvailableFormats.push_back(CompressionFormat::SevenZip);
-		myAvailableFormats.push_back(CompressionFormat::Rar);
-		myAvailableFormats.push_back(CompressionFormat::GZip);
-		myAvailableFormats.push_back(CompressionFormat::BZip2);
-		myAvailableFormats.push_back(CompressionFormat::Tar);
-		myAvailableFormats.push_back(CompressionFormat::Lzma);
-		myAvailableFormats.push_back(CompressionFormat::Lzma86);
-		myAvailableFormats.push_back(CompressionFormat::Cab);
-		myAvailableFormats.push_back(CompressionFormat::Iso);
-		myAvailableFormats.push_back(CompressionFormat::Arj);
-		myAvailableFormats.push_back(CompressionFormat::XZ);
+		myAvailableFormats.emplace_back(CompressionFormat::Zip);
+		myAvailableFormats.emplace_back(CompressionFormat::SevenZip);
+		myAvailableFormats.emplace_back(CompressionFormat::Rar);
+		myAvailableFormats.emplace_back(CompressionFormat::GZip);
+		myAvailableFormats.emplace_back(CompressionFormat::BZip2);
+		myAvailableFormats.emplace_back(CompressionFormat::Tar);
+		myAvailableFormats.emplace_back(CompressionFormat::Lzma);
+		myAvailableFormats.emplace_back(CompressionFormat::Lzma86);
+		myAvailableFormats.emplace_back(CompressionFormat::Cab);
+		myAvailableFormats.emplace_back(CompressionFormat::Iso);
+		myAvailableFormats.emplace_back(CompressionFormat::Arj);
+		myAvailableFormats.emplace_back(CompressionFormat::XZ);
 
 		// Check each format for one that works
-		for (size_t i = 0; i < myAvailableFormats.size(); i++)
+		for (auto myAvailableFormat : myAvailableFormats)
 		{
-			archiveCompressionFormat = myAvailableFormats[i];
+			archiveCompressionFormat = myAvailableFormat;
 
 			CComPtr< IInArchive > archive = UsefulFunctions::GetArchiveReader(library, archiveCompressionFormat);
 			if (!archive) continue;
@@ -229,13 +220,12 @@ namespace SevenZip
 			CComPtr< InStreamWrapper > inFile = new InStreamWrapper(fileStream);
 			CComPtr< ArchiveOpenCallback > openCallback = new ArchiveOpenCallback(password);
 
-			HRESULT hr = archive->Open(inFile, 0, openCallback);
+			HRESULT hr = archive->Open(inFile, nullptr, openCallback);
 			if (hr == S_OK)
 			{
 				// We know the format if we get here, so return
 				archive->Close();
 				return true;
-				//throw SevenZipException( GetCOMErrMsg( _T( "Open archive" ), hr ) );
 			}
 
 			archive->Close();
@@ -268,40 +258,28 @@ namespace SevenZip
 		{
 		case CompressionFormat::Zip:
 			return _T(".zip");
-			break;
 		case CompressionFormat::SevenZip:
 			return _T(".7z");
-			break;
 		case CompressionFormat::Rar:
 			return _T(".rar");
-			break;
 		case CompressionFormat::GZip:
 			return _T(".gz");
-			break;
 		case CompressionFormat::BZip2:
 			return _T(".bz");
-			break;
 		case CompressionFormat::Tar:
 			return _T(".tar");
-			break;
 		case CompressionFormat::Lzma:
 			return _T(".lzma");
-			break;
 		case CompressionFormat::Lzma86:
 			return _T(".lzma86");
-			break;
 		case CompressionFormat::Cab:
 			return _T(".cab");
-			break;
 		case CompressionFormat::Iso:
 			return _T(".iso");
-			break;
 		case CompressionFormat::Arj:
 			return _T(".arj");
-			break;
 		case CompressionFormat::XZ:
 			return _T(".xz");
-			break;
 		}
 		return _T(".zip");
 	}

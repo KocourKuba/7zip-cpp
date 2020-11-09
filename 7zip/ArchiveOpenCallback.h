@@ -12,7 +12,7 @@ namespace SevenZip
 		{
 		private:
 
-			long m_refCount;
+			long m_refCount = 0;
 			TString m_password;
 
 		public:

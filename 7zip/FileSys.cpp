@@ -22,8 +22,8 @@ namespace SevenZip
 			ScannerCallback(bool recursive, bool onlyFirst = false) : m_recursive(recursive), m_onlyFirst(onlyFirst) {}
 			const std::vector< FilePathInfo >& GetFiles() { return m_files; }
 
-			virtual bool ShouldDescend(const FilePathInfo& directory) { return m_recursive; }
-			virtual void ExamineFile(const FilePathInfo& file, bool& exit)
+			bool ShouldDescend(const FilePathInfo& directory) override { return m_recursive; }
+			void ExamineFile(const FilePathInfo& file, bool& exit) override
 			{
 				m_files.push_back(file);
 				if (m_onlyFirst)
@@ -45,8 +45,8 @@ namespace SevenZip
 			IsEmptyCallback() : m_isEmpty(true) {}
 			bool IsEmpty() const { return m_isEmpty; }
 
-			virtual bool ShouldDescend(const FilePathInfo& directory) { return true; }
-			virtual void ExamineFile(const FilePathInfo& file, bool& exit) { m_isEmpty = false; exit = true; }
+			bool ShouldDescend(const FilePathInfo& directory) override { return true; }
+			void ExamineFile(const FilePathInfo& file, bool& exit) override { m_isEmpty = false; exit = true; }
 		};
 
 
@@ -66,15 +66,14 @@ namespace SevenZip
 				// No path sep.
 				return TString();
 			}
-			else if (index + 1 >= filePath.size())
+
+			if (index + 1 >= filePath.size())
 			{
 				// Last char is path sep, the whole thing is a path.
 				return filePath;
 			}
-			else
-			{
-				return filePath.substr(0, index + 1);
-			}
+
+			return filePath.substr(0, index + 1);
 		}
 
 		TString FileSys::GetFileName(const TString& filePathOrName)
@@ -93,15 +92,14 @@ namespace SevenZip
 				// No path sep, return the whole thing.
 				return filePathOrName;
 			}
-			else if (index + 1 >= filePathOrName.size())
+
+			if (index + 1 >= filePathOrName.size())
 			{
 				// Last char is path sep, no filename.
 				return TString();
 			}
-			else
-			{
-				return filePathOrName.substr(index + 1, filePathOrName.size() - (index + 1));
-			}
+
+			return filePathOrName.substr(index + 1, filePathOrName.size() - (index + 1));
 		}
 
 		TString FileSys::AppendPath(const TString& left, const TString& right)
@@ -116,10 +114,8 @@ namespace SevenZip
 			{
 				return left + right;
 			}
-			else
-			{
-				return left + _T("\\") + right;
-			}
+
+			return left + _T("\\") + right;
 		}
 
 		TString FileSys::ExtractRelativePath(const TString& basePath, const TString& fullPath)
@@ -145,10 +141,8 @@ namespace SevenZip
 			{
 				return false;
 			}
-			else
-			{
-				return (attributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
-			}
+
+			return (attributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
 		}
 
 		bool FileSys::IsDirectoryEmptyRecursive(const TString& path)
@@ -160,7 +154,7 @@ namespace SevenZip
 
 		bool FileSys::CreateDirectoryTree(const TString& path)
 		{
-			int ret = SHCreateDirectoryEx(NULL, path.c_str(), NULL);
+			int ret = SHCreateDirectoryEx(nullptr, path.c_str(), nullptr);
 			return ret == ERROR_SUCCESS;
 		}
 
@@ -191,9 +185,9 @@ namespace SevenZip
 			wchar_t filePathStr[MAX_PATH];
 			MultiByteToWideChar(_AtlGetConversionACP(), 0, filePath.c_str(), (int)filePath.length() + 1, filePathStr, MAX_PATH);
 #endif
-			if (FAILED(SHCreateStreamOnFileEx(filePathStr, STGM_READ, FILE_ATTRIBUTE_NORMAL, FALSE, NULL, &fileStream)))
+			if (FAILED(SHCreateStreamOnFileEx(filePathStr, STGM_READ, FILE_ATTRIBUTE_NORMAL, FALSE, nullptr, &fileStream)))
 			{
-				return NULL;
+				return nullptr;
 			}
 
 			return fileStream;
@@ -209,9 +203,9 @@ namespace SevenZip
 			wchar_t filePathStr[MAX_PATH];
 			MultiByteToWideChar(_AtlGetConversionACP(), 0, filePath.c_str(), (int)filePath.length() + 1, filePathStr, MAX_PATH);
 #endif
-			if (FAILED(SHCreateStreamOnFileEx(filePathStr, STGM_CREATE | STGM_WRITE, FILE_ATTRIBUTE_NORMAL, TRUE, NULL, &fileStream)))
+			if (FAILED(SHCreateStreamOnFileEx(filePathStr, STGM_CREATE | STGM_WRITE, FILE_ATTRIBUTE_NORMAL, TRUE, nullptr, &fileStream)))
 			{
-				return NULL;
+				return nullptr;
 			}
 
 			return fileStream;

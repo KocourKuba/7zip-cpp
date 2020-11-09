@@ -11,7 +11,7 @@ namespace SevenZip
 	class SevenZipArchive
 	{
 	public:
-		SevenZipArchive() {}
+		SevenZipArchive() = default;
 		SevenZipArchive(SevenZipLibrary* library, const TString& archivePath);
 		virtual ~SevenZipArchive();
 

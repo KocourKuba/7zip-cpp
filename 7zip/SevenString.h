@@ -8,9 +8,9 @@
 namespace SevenZip
 {
 #ifdef _UNICODE
-	typedef std::wstring TString;
+	using TString = std::wstring;
 #else
-	typedef std::string TString;
+	using TString = std::string;
 #endif
 }
 namespace SevenZip

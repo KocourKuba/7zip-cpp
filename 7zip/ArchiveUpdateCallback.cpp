@@ -12,7 +12,7 @@ namespace SevenZip
 	namespace intl
 	{
 
-		ArchiveUpdateCallback::ArchiveUpdateCallback(const std::vector< FilePathInfo >& filePaths, const TString& outputFilePath, const TString& password, ProgressCallback* callback)
+		ArchiveUpdateCallback::ArchiveUpdateCallback(const std::vector< FilePathInfo >& filePaths, const TString& outputFilePath, const TString& password, IProgressCallback* callback)
 			: m_refCount(0)
 			, m_filePaths(filePaths)
 			, m_callback(callback)
@@ -101,17 +101,17 @@ namespace SevenZip
 		{
 			// Setting info for Create mode (vs. Append mode).
 			// TODO: support append mode
-			if (newData != NULL)
+			if (newData != nullptr)
 			{
 				*newData = 1;
 			}
 
-			if (newProperties != NULL)
+			if (newProperties != nullptr)
 			{
 				*newProperties = 1;
 			}
 
-			if (indexInArchive != NULL)
+			if (indexInArchive != nullptr)
 			{
 				*indexInArchive = static_cast<UInt32>(-1); // TODO: UInt32.Max
 			}

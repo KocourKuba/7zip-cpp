@@ -61,14 +61,13 @@ namespace SevenZip
 		{
 			struct StringValue
 			{
-				TEnum			value;
-				const TCHAR*	string;
+				TEnum		 value;
+				const TCHAR* string;
 			};
 
 			static TEnum Parse(const TString& string, const TEnum defaultValue)
 			{
-				const StringValue* it = DerivedDef::Strings;
-				for (; it->string != NULL; ++it)
+				for (const auto it = DerivedDef::Strings; it->string != nullptr; ++it)
 				{
 					if (string.Compare(it->string) == 0)
 					{
@@ -80,8 +79,7 @@ namespace SevenZip
 
 			static TString Format(const TEnum& value)
 			{
-				const StringValue* it = DerivedDef::Strings;
-				for (; it->string != NULL; ++it)
+				for (const auto it = DerivedDef::Strings; it->string != nullptr; ++it)
 				{
 					if (value == it->value)
 					{
@@ -101,43 +99,31 @@ namespace SevenZip
 		{
 		private:
 
-			typedef typename EnumerationValue< TEnum, TEnumClass, DefaultValue > ThisClass;
+			using ThisClass = typename EnumerationValue< TEnum, TEnumClass, DefaultValue >;
 
 			TEnum m_value;
 
 		public:
 
-			typedef typename TEnum Enum;
+			using Enum = typename TEnum;
 
 			EnumerationValue() :
 				m_value(DefaultValue)
 			{
 			}
 
-			EnumerationValue(const TEnum& value) :
-				m_value(value)
-			{
-			}
+			EnumerationValue(const TEnum& value) : m_value(value) {}
 
 			static ThisClass Parse(const TString& string)
 			{
 				return ThisClass(TEnumClass::Parse(string, DefaultValue));
 			}
 
-			const TEnum& GetValue() const
-			{
-				return m_value;
-			}
+			const TEnum& GetValue() const { return m_value; }
 
-			TString GetString() const
-			{
-				return TEnumClass::Format(m_value);
-			}
+			TString GetString() const { return TEnumClass::Format(m_value); }
 
-			operator TEnum() const
-			{
-				return m_value;
-			}
+			operator TEnum() const { return m_value; }
 
 			ThisClass& operator=(const TEnum& value)
 			{

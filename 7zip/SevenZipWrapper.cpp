@@ -5,7 +5,7 @@
 
 namespace SevenZip
 {
-	SevenZipWrapper::SevenZipWrapper() : m_libLoaded(false)
+	SevenZipWrapper::SevenZipWrapper()
 	{
 		m_compressor.SetLibrary(&m_lib);
 		m_extractor.SetLibrary(&m_lib);
@@ -19,16 +19,14 @@ namespace SevenZip
 	bool SevenZipWrapper::OpenArchive(const TString& archivePath, const TString& password /*= _T("")*/)
 	{
 		ATLASSERT(m_libLoaded);
-		if (!m_libLoaded)
+		if (m_libLoaded)
 		{
-			return false;
+			m_extractor.SetArchivePath(archivePath);
+			m_extractor.SetPassword(password);
+			m_extractor.ReadInArchiveMetadata();
 		}
 
-		m_extractor.SetArchivePath(archivePath);
-		m_extractor.SetPassword(password);
-		m_extractor.ReadInArchiveMetadata();
-
-		return true;
+		return m_libLoaded;
 	}
 
 	bool SevenZipWrapper::CreateArchive(const TString& archivePath, const TString& password /*= _T("")*/)

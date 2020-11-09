@@ -19,11 +19,7 @@ namespace SevenZip
 	{
 	}
 
-	SevenZipExtractor::~SevenZipExtractor()
-	{
-	}
-
-	bool SevenZipExtractor::ExtractArchive(const TString& destDirectory, ProgressCallback* callback /*= nullptr*/)
+	bool SevenZipExtractor::ExtractArchive(const TString& destDirectory, IProgressCallback* callback /*= nullptr*/)
 	{
 		CComPtr< IStream > archiveStream = FileSys::OpenFileToRead(m_archivePath);
 
@@ -32,13 +28,13 @@ namespace SevenZip
 			return false;	//Could not open archive
 		}
 
-		return ExtractFilesFromArchive(archiveStream, NULL, -1, destDirectory, callback);
+		return ExtractFilesFromArchive(archiveStream, nullptr, -1, destDirectory, callback);
 	}
 
 	bool SevenZipExtractor::ExtractFilesFromArchive(const unsigned int* fileIndices,
 													const unsigned int numberFiles,
 													const TString& destDirectory,
-													ProgressCallback* callback /*= nullptr*/)
+													IProgressCallback* callback /*= nullptr*/)
 	{
 		CComPtr< IStream > archiveStream = FileSys::OpenFileToRead(m_archivePath);
 
@@ -50,7 +46,7 @@ namespace SevenZip
 		return ExtractFilesFromArchive(archiveStream, fileIndices, numberFiles, destDirectory, callback);
 	}
 
-	bool SevenZipExtractor::ExtractFileToMemory(const unsigned int index, std::vector<BYTE>& out_buffer, ProgressCallback* callback /*= nullptr*/)
+	bool SevenZipExtractor::ExtractFileToMemory(const unsigned int index, std::vector<BYTE>& out_buffer, IProgressCallback* callback /*= nullptr*/)
 	{
 		CComPtr< IStream > archiveStream = FileSys::OpenFileToRead(m_archivePath);
 		if (archiveStream == nullptr)
@@ -62,7 +58,7 @@ namespace SevenZip
 		CComPtr< InStreamWrapper > inFile = new InStreamWrapper(archiveStream);
 		CComPtr< ArchiveOpenCallback > openCallback = new ArchiveOpenCallback(m_password);
 
-		HRESULT hr = archive->Open(inFile, 0, openCallback);
+		HRESULT hr = archive->Open(inFile, nullptr, openCallback);
 		if (hr != S_OK)
 		{
 			return false;	//Open archive error
@@ -94,13 +90,13 @@ namespace SevenZip
 													const unsigned int* filesIndices,
 													const unsigned int numberFiles,
 													const TString& destDirectory,
-													ProgressCallback* callback)
+													IProgressCallback* callback)
 	{
 		CComPtr< IInArchive > archive = UsefulFunctions::GetArchiveReader(*m_library, m_compressionFormat);
 		CComPtr< InStreamWrapper > inFile = new InStreamWrapper(archiveStream);
 		CComPtr< ArchiveOpenCallback > openCallback = new ArchiveOpenCallback(m_password);
 
-		HRESULT hr = archive->Open(inFile, 0, openCallback);
+		HRESULT hr = archive->Open(inFile, nullptr, openCallback);
 		if (hr != S_OK)
 		{
 			return false;	//Open archive error

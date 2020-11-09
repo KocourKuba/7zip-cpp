@@ -37,22 +37,9 @@ namespace SevenZip
 		return StrFmt(_T("%s: HRESULT = 0x%08X"), contextMessage.c_str(), lastError);
 	}
 
-	SevenZipException::SevenZipException()
-	{
-	}
-
 	SevenZipException::SevenZipException(const TString& message)
 		: m_message(message)
 	{
-	}
-
-	SevenZipException::~SevenZipException()
-	{
-	}
-
-	const TString& SevenZipException::GetMessage() const
-	{
-		return m_message;
 	}
 
 }

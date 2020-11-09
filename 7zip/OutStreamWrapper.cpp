@@ -13,10 +13,6 @@ namespace SevenZip
 		{
 		}
 
-		OutStreamWrapper::~OutStreamWrapper()
-		{
-		}
-
 		STDMETHODIMP OutStreamWrapper::QueryInterface(REFIID iid, void** ppvObject)
 		{
 			if (iid == __uuidof(IUnknown))
@@ -62,7 +58,7 @@ namespace SevenZip
 		{
 			ULONG written = 0;
 			HRESULT hr = m_baseStream->Write(data, size, &written);
-			if (processedSize != NULL)
+			if (processedSize != nullptr)
 			{
 				*processedSize = written;
 			}
@@ -76,7 +72,7 @@ namespace SevenZip
 
 			move.QuadPart = offset;
 			HRESULT hr = m_baseStream->Seek(move, seekOrigin, &newPos);
-			if (newPosition != NULL)
+			if (newPosition != nullptr)
 			{
 				*newPosition = newPos.QuadPart;
 			}

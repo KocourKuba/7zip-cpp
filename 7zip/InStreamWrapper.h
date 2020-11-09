@@ -18,7 +18,7 @@ namespace SevenZip
 		public:
 
 			InStreamWrapper(const CComPtr< IStream >& baseStream);
-			virtual ~InStreamWrapper();
+			virtual ~InStreamWrapper() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);
 			STDMETHOD_(ULONG, AddRef)();

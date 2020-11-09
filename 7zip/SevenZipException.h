@@ -19,10 +19,10 @@ namespace SevenZip
 
 	public:
 
-		SevenZipException();
+		SevenZipException() = default;
 		SevenZipException(const TString& message);
-		virtual ~SevenZipException();
+		virtual ~SevenZipException() = default;
 
-		const TString& GetMessage() const;
+		const TString& GetMessage() const { return m_message; }
 	};
 }

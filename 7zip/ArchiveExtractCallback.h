@@ -1,4 +1,5 @@
 // This file is based on the following file from the LZMA SDK (http://www.7-zip.org/sdk.html):
+//   ./CPP/7zip/UI/Client7z/Client7z.cpp
 #pragma once
 
 
@@ -7,6 +8,7 @@
 #include <7zip/UI/Common/UpdateCallback.h>
 
 #include "ProgressCallback.h"
+
 
 namespace SevenZip
 {
@@ -37,11 +39,11 @@ namespace SevenZip
 			bool m_hasNewFileSize;
 			UInt64 m_newFileSize;
 
-			ProgressCallback* m_callback;
+			IProgressCallback* m_callback;
 
 		public:
 
-			ArchiveExtractCallback(const CComPtr< IInArchive >& archiveHandler, const TString& directory, const TString& archivePath, const TString& password, ProgressCallback* callback);
+			ArchiveExtractCallback(const CComPtr< IInArchive >& archiveHandler, const TString& directory, const TString& archivePath, const TString& password, IProgressCallback* callback);
 			virtual ~ArchiveExtractCallback() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);

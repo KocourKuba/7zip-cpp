@@ -11,10 +11,6 @@ namespace SevenZip
 		{
 		}
 
-		COutMemStream::~COutMemStream()
-		{
-		}
-
 		STDMETHODIMP COutMemStream::QueryInterface(REFIID iid, void** ppvObject)
 		{
 			if (iid == __uuidof(IUnknown))
@@ -55,7 +51,7 @@ namespace SevenZip
 			{
 				*processedSize = 0;
 			}
-			if (data == NULL || size == 0)
+			if (data == nullptr || size == 0)
 			{
 				return E_FAIL;
 			}

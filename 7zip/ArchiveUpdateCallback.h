@@ -17,15 +17,15 @@ namespace SevenZip
 		{
 		private:
 
-			long m_refCount;
+			long m_refCount = 0;
 			TString m_outputPath;
 			TString m_password;
 			const std::vector< FilePathInfo >& m_filePaths;
-			ProgressCallback* m_callback;
+			IProgressCallback* m_callback = nullptr;
 
 		public:
 
-			ArchiveUpdateCallback(const std::vector< FilePathInfo >& filePaths, const TString& outputFilePath, const TString& password, ProgressCallback* callback);
+			ArchiveUpdateCallback(const std::vector< FilePathInfo >& filePaths, const TString& outputFilePath, const TString& password, IProgressCallback* callback);
 			virtual ~ArchiveUpdateCallback() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);

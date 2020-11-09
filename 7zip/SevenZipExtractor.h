@@ -12,16 +12,16 @@ namespace SevenZip
 	{
 	public:
 
-		SevenZipExtractor() {}
+		SevenZipExtractor() = default;
 		SevenZipExtractor(SevenZipLibrary* library, const TString& archivePath);
-		virtual ~SevenZipExtractor();
+		virtual ~SevenZipExtractor() = default;
 
-		virtual bool ExtractArchive(const TString& directory, ProgressCallback* callback = nullptr);
+		virtual bool ExtractArchive(const TString& directory, IProgressCallback* callback = nullptr);
 		virtual bool ExtractFilesFromArchive(const unsigned int* fileIndices,
 											 const unsigned int numberFiles,
 											 const TString& directory,
-											 ProgressCallback* callback = nullptr);
-		virtual bool ExtractFileToMemory(const unsigned int index, std::vector<BYTE>& out_buffer, ProgressCallback* callback = nullptr);
+											 IProgressCallback* callback = nullptr);
+		virtual bool ExtractFileToMemory(const unsigned int index, std::vector<BYTE>& out_buffer, IProgressCallback* callback = nullptr);
 
 		virtual bool ExtractFile(const TString& filename, const TString& path, bool bUseFullPath = false);
 		virtual bool ExtractFileToMemory(const TString& filename, std::vector<BYTE>& memBuffer, bool bUseFullPath = false);
@@ -32,6 +32,6 @@ namespace SevenZip
 									 const unsigned int* fileIndices,
 									 const unsigned int numberFiles,
 									 const TString& directory,
-									 ProgressCallback* callback);
+									 IProgressCallback* callback);
 	};
 }

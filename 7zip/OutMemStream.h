@@ -13,7 +13,7 @@ namespace SevenZip
 		public:
 
 			explicit COutMemStream(std::vector< BYTE >& out_buffer);
-			virtual ~COutMemStream();
+			virtual ~COutMemStream() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);
 			STDMETHOD_(ULONG, AddRef)();
@@ -24,7 +24,7 @@ namespace SevenZip
 
 		private:
 
-			long m_refCount;
+			long m_refCount = 0;
 			std::vector<BYTE>& m_buffer;
 		};
 	}

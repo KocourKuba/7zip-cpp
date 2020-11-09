@@ -28,6 +28,7 @@
 /Debug/
 /Release Unicode
 /Release
+export/
 **/x64/
 
 # Misc

@@ -11,8 +11,8 @@ namespace SevenZip
 		SevenZipWrapper(const TString& libPath);
 		~SevenZipWrapper() = default;
 
-		bool CreateArchive(const TString& archivePath, const TString& password = _T(""));
-		bool OpenArchive(const TString& archivePath, const TString& password = _T(""));
+		bool CreateArchive(const TString& archivePath, const TString& password = TString());
+		bool OpenArchive(const TString& archivePath, const TString& password = TString());
 
 		bool SetLibPath(const TString& libPath) { return (m_libLoaded = m_lib.Load(libPath)); }
 
@@ -20,7 +20,7 @@ namespace SevenZip
 		SevenZip::SevenZipExtractor& GetExtractor() { return m_extractor; }
 
 	private:
-		bool m_libLoaded;
+		bool m_libLoaded = false;
 
 		SevenZipLibrary m_lib;
 		SevenZipCompressor m_compressor;

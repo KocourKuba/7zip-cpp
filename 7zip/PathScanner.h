@@ -17,7 +17,7 @@ namespace SevenZip
 			{
 			public:
 
-				virtual ~Callback() {}
+				virtual ~Callback() = default;
 
 				virtual void BeginScan() {}
 				virtual void EndScan() {}

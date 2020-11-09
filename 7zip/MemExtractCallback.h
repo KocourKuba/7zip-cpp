@@ -19,7 +19,7 @@ namespace SevenZip
 		{
 		private:
 
-			long m_refCount;
+			long m_refCount = 0;
 
 			CComPtr< IInArchive > m_archiveHandler;
 			CComPtr< ISequentialOutStream > m_outMemStream;
@@ -28,16 +28,20 @@ namespace SevenZip
 			TString m_archivePath;
 			TString m_password;
 
-			bool m_isDir;
-			bool m_hasNewFileSize;
-			UInt64 m_newFileSize;
+			bool m_isDir = false;
+			bool m_hasNewFileSize = false;
+			UInt64 m_newFileSize = { 0 };
 			TString m_filePath;
 
-			ProgressCallback* m_callback;
+			IProgressCallback* m_callback = nullptr;
 
 		public:
 
-			MemExtractCallback(const CComPtr< IInArchive >& archiveHandler, std::vector<BYTE>& buffer, const TString& archivePath, const TString& password, ProgressCallback* callback);
+			MemExtractCallback(const CComPtr< IInArchive >& archiveHandler,
+							   std::vector<BYTE>& buffer,
+							   const TString& archivePath,
+							   const TString& password,
+							   IProgressCallback* callback);
 			virtual ~MemExtractCallback() = default;
 
 			STDMETHOD(QueryInterface)(REFIID iid, void** ppvObject);

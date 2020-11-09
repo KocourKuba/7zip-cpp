@@ -1,4 +1,5 @@
 // This file is based on the following file from the LZMA SDK (http://www.7-zip.org/sdk.html):
+//   ./CPP/7zip/UI/Client7z/Client7z.cpp
 #include "StdAfx.h"
 #include "MemExtractCallback.h"
 #include "PropVariant.h"
@@ -18,7 +19,7 @@ namespace SevenZip
 											   std::vector<BYTE>& buffer,
 											   const TString& archivePath,
 											   const TString& password,
-											   ProgressCallback* callback)
+											   IProgressCallback* callback)
 			: m_refCount(0)
 			, m_archiveHandler(archiveHandler)
 			, m_buffer(buffer)

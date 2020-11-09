@@ -116,4 +116,3 @@ namespace SevenZip
 											  m_numberofitems, m_itemnames, m_origsizes, m_password);
 	}
 }
-

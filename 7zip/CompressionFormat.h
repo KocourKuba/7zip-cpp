@@ -26,9 +26,9 @@ namespace SevenZip
 
 		};
 
-		typedef intl::EnumerationDefinitionNoStrings _Definition;
-		typedef intl::EnumerationValue< _Enum, _Definition, Unknown > _Value;
+		using _Definition = intl::EnumerationDefinitionNoStrings;
+		using _Value = intl::EnumerationValue< _Enum, _Definition, Unknown >;
 	};
 
-	typedef CompressionFormat::_Value CompressionFormatEnum;
+	using CompressionFormatEnum = CompressionFormat::_Value;
 }

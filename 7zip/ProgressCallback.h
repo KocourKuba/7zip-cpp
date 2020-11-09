@@ -7,7 +7,7 @@
 
 namespace SevenZip
 {
-	class ProgressCallback
+	class IProgressCallback
 	{
 	public:
 

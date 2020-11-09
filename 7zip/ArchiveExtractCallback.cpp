@@ -16,7 +16,7 @@ namespace SevenZip
 		const TString EmptyFileAlias = _T("[Content]");
 
 
-		ArchiveExtractCallback::ArchiveExtractCallback(const CComPtr< IInArchive >& archiveHandler, const TString& directory, const TString& archivePath, const TString& password, ProgressCallback* callback)
+		ArchiveExtractCallback::ArchiveExtractCallback(const CComPtr< IInArchive >& archiveHandler, const TString& directory, const TString& archivePath, const TString& password, IProgressCallback* callback)
 			: m_refCount(0)
 			, m_archiveHandler(archiveHandler)
 			, m_directory(directory)
@@ -151,7 +151,7 @@ namespace SevenZip
 			{
 				// Creating the directory here supports having empty directories.
 				FileSys::CreateDirectoryTree(m_absPath);
-				*outStream = NULL;
+				*outStream = nullptr;
 				return S_OK;
 			}
 
@@ -159,7 +159,7 @@ namespace SevenZip
 			FileSys::CreateDirectoryTree(absDir);
 
 			CComPtr< IStream > fileStream = FileSys::OpenFileToWrite(m_absPath);
-			if (fileStream == NULL)
+			if (fileStream == nullptr)
 			{
 				m_absPath.clear();
 				return HRESULT_FROM_WIN32(GetLastError());
@@ -186,10 +186,10 @@ namespace SevenZip
 
 			if (m_hasModifiedTime)
 			{
-				HANDLE fileHandle = CreateFile(m_absPath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+				HANDLE fileHandle = CreateFile(m_absPath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 				if (fileHandle != INVALID_HANDLE_VALUE)
 				{
-					SetFileTime(fileHandle, NULL, NULL, &m_modifiedTime);
+					SetFileTime(fileHandle, nullptr, nullptr, &m_modifiedTime);
 					CloseHandle(fileHandle);
 				}
 			}

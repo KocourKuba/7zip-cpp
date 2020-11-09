@@ -17,7 +17,7 @@ namespace SevenZip
 	{
 	public:
 		// archive path - full path to creating archive without extension
-		SevenZipCompressor() {}
+		SevenZipCompressor() = default;
 		SevenZipCompressor(SevenZipLibrary* library, const TString& archivePath);
 		virtual ~SevenZipCompressor() = default;
 
@@ -37,12 +37,12 @@ namespace SevenZip
 		virtual bool AddMemory(const TString& filePath, void* memPointer, size_t size);
 
 		// Compress list of files
-		virtual bool DoCompress(ProgressCallback* callback = nullptr);
+		virtual bool DoCompress(IProgressCallback* callback = nullptr);
 
 		void ClearList() { m_fileList.clear(); }
 		void UseAbsolutePaths(bool absolute) { m_absolutePath = absolute; }
 		bool CheckValidFormat() const;
-		bool IsListEmpty() { return m_fileList.empty(); }
+		bool IsListEmpty() const { return m_fileList.empty(); }
 
 	private:
 		std::vector< intl::FilePathInfo > m_fileList; // list of files to compress
