@@ -47,7 +47,6 @@ namespace SevenZip
 		memFile.memPointer = memPointer;
 		memFile.Size = size;
 		memFile.CreationTime = memFile.LastAccessTime = memFile.LastWriteTime = CFileTime::GetCurrentTime();
-		memFile.IsDirectory = false;
 		memFile.Attributes = FILE_ATTRIBUTE_NORMAL;
 
 		m_fileList.push_back(memFile);

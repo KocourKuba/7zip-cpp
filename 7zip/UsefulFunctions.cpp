@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UsefulFunctions.h"
 #include "PropVariant.h"
+#include <array>
 
 
 namespace SevenZip
@@ -193,21 +194,21 @@ namespace SevenZip
 			return false;
 		}
 
-		std::vector<CompressionFormatEnum> myAvailableFormats;
-
 		// Add more formats here if 7zip supports more formats in the future
-		myAvailableFormats.emplace_back(CompressionFormat::Zip);
-		myAvailableFormats.emplace_back(CompressionFormat::SevenZip);
-		myAvailableFormats.emplace_back(CompressionFormat::Rar);
-		myAvailableFormats.emplace_back(CompressionFormat::GZip);
-		myAvailableFormats.emplace_back(CompressionFormat::BZip2);
-		myAvailableFormats.emplace_back(CompressionFormat::Tar);
-		myAvailableFormats.emplace_back(CompressionFormat::Lzma);
-		myAvailableFormats.emplace_back(CompressionFormat::Lzma86);
-		myAvailableFormats.emplace_back(CompressionFormat::Cab);
-		myAvailableFormats.emplace_back(CompressionFormat::Iso);
-		myAvailableFormats.emplace_back(CompressionFormat::Arj);
-		myAvailableFormats.emplace_back(CompressionFormat::XZ);
+		std::array<CompressionFormatEnum, CompressionFormat::Unknown> myAvailableFormats = {
+			CompressionFormat::Zip,
+			CompressionFormat::SevenZip,
+			CompressionFormat::Rar,
+			CompressionFormat::GZip,
+			CompressionFormat::BZip2,
+			CompressionFormat::Tar,
+			CompressionFormat::Lzma,
+			CompressionFormat::Lzma86,
+			CompressionFormat::Cab,
+			CompressionFormat::Iso,
+			CompressionFormat::Arj,
+			CompressionFormat::XZ,
+		};
 
 		// Check each format for one that works
 		for (auto myAvailableFormat : myAvailableFormats)

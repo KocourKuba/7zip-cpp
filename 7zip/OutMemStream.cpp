@@ -57,7 +57,11 @@ namespace SevenZip
 			}
 			const BYTE* byte_data = static_cast<const BYTE*>(data);
 			m_buffer.insert(m_buffer.end(), byte_data, byte_data + size);
-			*processedSize = size;
+
+			if (processedSize != nullptr)
+			{
+				*processedSize = size;
+			}
 
 			return S_OK;
 		}

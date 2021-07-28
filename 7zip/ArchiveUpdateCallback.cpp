@@ -135,7 +135,7 @@ namespace SevenZip
 				return E_INVALIDARG;
 			}
 
-			const FilePathInfo& fileInfo = m_filePaths.at(index);
+			const FilePathInfo& fileInfo = m_filePaths[index];
 			switch (propID)
 			{
 			case kpidPath:		prop = FileSys::ExtractRelativePath(fileInfo.rootPath, fileInfo.FilePath).c_str(); break;
@@ -158,7 +158,7 @@ namespace SevenZip
 				return E_INVALIDARG;
 			}
 
-			const FilePathInfo& fileInfo = m_filePaths.at(index);
+			const FilePathInfo& fileInfo = m_filePaths[index];
 			if (fileInfo.IsDirectory)
 			{
 				return S_OK;

@@ -10,7 +10,6 @@ namespace SevenZip
 	{
 		enum _Enum
 		{
-			Unknown,
 			SevenZip,
 			Zip,
 			GZip,
@@ -23,7 +22,7 @@ namespace SevenZip
 			Lzma86,
 			Arj,
 			XZ,
-
+			Unknown, // Must be last in the enum
 		};
 
 		using _Definition = intl::EnumerationDefinitionNoStrings;
