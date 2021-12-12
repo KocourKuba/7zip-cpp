@@ -69,7 +69,7 @@ namespace SevenZip
 			{
 				for (const auto it = DerivedDef::Strings; it->string != nullptr; ++it)
 				{
-					if (string.Compare(it->string) == 0)
+					if (string == it->string)
 					{
 						return it->value;
 					}

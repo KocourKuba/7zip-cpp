@@ -16,18 +16,14 @@
 #else
 #define CHARSET "a"
 #endif
-#ifdef _AFXDLL
-#define STATIC ""
-#else
-#define STATIC "s"
-#endif
+
 #ifdef _WIN64
 #define BITNESS "64"
 #else
 #define BITNESS "32"
 #endif
 
-#define LIBFILENAME SEVENZIP_LIBNAME BITNESS CHARSET STATIC LIBDBG ".lib"
+#define LIBFILENAME SEVENZIP_LIBNAME BITNESS CHARSET LIBDBG ".lib"
 
 #ifdef _LIB
 #pragma message (SEVENZIP_LIBNAME ": Build " LIBFILENAME)
@@ -38,6 +34,5 @@
 
 #undef LIBDBG
 #undef CHARSET
-#undef STATIC
 #undef BITNESS
 #undef SEVENZIP_LIBNAME
