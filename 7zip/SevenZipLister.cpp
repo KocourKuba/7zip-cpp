@@ -15,8 +15,7 @@ namespace SevenZip
 	using namespace intl;
 
 	SevenZipLister::SevenZipLister(SevenZipLibrary* library, const TString& archivePath)
-		: SevenZipArchive(library, archivePath),
-		m_archivePath(archivePath)
+		: SevenZipArchive(library, archivePath)
 	{
 	}
 

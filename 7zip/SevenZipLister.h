@@ -11,8 +11,6 @@ namespace SevenZip
 	class SevenZipLister : public SevenZipArchive
 	{
 	public:
-		TString m_archivePath;
-
 		SevenZipLister() = default;
 		SevenZipLister(SevenZipLibrary* library, const TString& archivePath);
 		virtual ~SevenZipLister() = default;
