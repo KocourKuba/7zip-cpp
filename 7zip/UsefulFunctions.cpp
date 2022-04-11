@@ -176,7 +176,7 @@ namespace SevenZip
 			if (prop.vt == VT_BSTR)
 			{
 				std::wstring mypath(prop.bstrVal);
-				itemnames[i] = mypath;
+				std::swap(itemnames[i], mypath);
 			}
 		}
 
