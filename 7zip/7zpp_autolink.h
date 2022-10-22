@@ -9,8 +9,14 @@
 #define LIBDBG "d"
 #else
 #define LIBDBG
-
 #endif
+
+#ifdef _DLL
+#define STATIC
+#else
+#define STATIC "s"
+#endif
+
 #ifdef _UNICODE
 #define CHARSET "u"
 #else
@@ -23,7 +29,7 @@
 #define BITNESS "32"
 #endif
 
-#define LIBFILENAME SEVENZIP_LIBNAME BITNESS CHARSET LIBDBG ".lib"
+#define LIBFILENAME SEVENZIP_LIBNAME BITNESS STATIC CHARSET LIBDBG ".lib"
 
 #ifdef _LIB
 #pragma message (SEVENZIP_LIBNAME ": Build " LIBFILENAME)
@@ -33,6 +39,7 @@
 #endif
 
 #undef LIBDBG
+#undef STATIC
 #undef CHARSET
 #undef BITNESS
 #undef SEVENZIP_LIBNAME
