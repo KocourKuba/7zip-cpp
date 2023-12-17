@@ -180,9 +180,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -198,9 +196,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -219,9 +215,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -235,14 +229,12 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\7z\CPP;$(ProjectDir)..\7z\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -260,9 +252,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -280,9 +270,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -303,9 +291,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
@@ -319,16 +305,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(ProjectDir)..\7z\CPP;$(ProjectDir)..\7z\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command>$(SolutionDir)\scripts\PostBuildCommands.bat "$(SolutionDir)\Lib\$(Platform)" </Command>
     </PostBuildEvent>
