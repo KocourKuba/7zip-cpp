@@ -253,7 +253,7 @@ namespace SevenZip
 		return false;
 	}
 
-	const TString UsefulFunctions::EndingFromCompressionFormat(const CompressionFormatEnum& format)
+	TString UsefulFunctions::EndingFromCompressionFormat(const CompressionFormatEnum& format)
 	{
 		switch (format)
 		{
