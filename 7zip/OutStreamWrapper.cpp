@@ -8,8 +8,7 @@ namespace SevenZip
 	{
 
 		OutStreamWrapper::OutStreamWrapper(const CComPtr< IStream >& baseStream)
-			: m_refCount(0)
-			, m_baseStream(baseStream)
+			: m_baseStream(baseStream)
 		{
 		}
 

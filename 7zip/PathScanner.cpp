@@ -34,7 +34,7 @@ namespace SevenZip
 
 		bool PathScanner::ExamineFiles(const TString& directory, const TString& searchPattern, const TString& pathPrefix, Callback& cb)
 		{
-			TString findStr = FileSys::AppendPath(directory, searchPattern);
+			const TString findStr = FileSys::AppendPath(directory, searchPattern);
 			bool exit = false;
 
 			WIN32_FIND_DATA fdata;
@@ -66,7 +66,7 @@ namespace SevenZip
 
 		void PathScanner::ExamineDirectories(const TString& directory, std::deque< TString >& subDirs, const TString& pathPrefix, Callback& cb)
 		{
-			TString findStr = FileSys::AppendPath(directory, _T("*"));
+			const TString findStr = FileSys::AppendPath(directory, _T("*"));
 
 			WIN32_FIND_DATA fdata;
 			HANDLE hFile = FindFirstFile(findStr.c_str(), &fdata);

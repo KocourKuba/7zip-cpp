@@ -76,7 +76,7 @@ namespace SevenZip
 			return CheckBreak();
 		}
 
-		STDMETHODIMP ArchiveExtractCallback::SetCompleted(const UInt64* completeValue)
+		STDMETHODIMP ArchiveExtractCallback::SetCompleted(const UInt64* /*completeValue*/)
 		{
 			//Callback Event calls
 			/*
@@ -170,12 +170,12 @@ namespace SevenZip
 			return CheckBreak();
 		}
 
-		STDMETHODIMP ArchiveExtractCallback::PrepareOperation(Int32 askExtractMode)
+		STDMETHODIMP ArchiveExtractCallback::PrepareOperation(Int32 /*askExtractMode*/)
 		{
 			return S_OK;
 		}
 
-		STDMETHODIMP ArchiveExtractCallback::SetOperationResult(Int32 operationResult)
+		STDMETHODIMP ArchiveExtractCallback::SetOperationResult(Int32 /*operationResult*/)
 		{
 			if (m_absPath.empty())
 			{

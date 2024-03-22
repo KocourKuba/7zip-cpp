@@ -12,14 +12,12 @@
 namespace SevenZip
 {
 
-	using namespace intl;
-
 	SevenZipLister::SevenZipLister(SevenZipLibrary* library, const TString& archivePath)
 		: SevenZipArchive(library, archivePath)
 	{
 	}
 
-	bool SevenZipLister::ListArchive(const TString& password, ListCallback* callback /*= nullptr*/)
+	bool SevenZipLister::ListArchive(const TString& password, ListCallback* callback /*= nullptr*/) const
 	{
 		CComPtr< IStream > fileStream = FileSys::OpenFileToRead(m_archivePath);
 		if (fileStream == nullptr)
@@ -30,7 +28,7 @@ namespace SevenZip
 		return ListArchive(fileStream, password, callback);
 	}
 
-	bool SevenZipLister::ListArchive(const CComPtr< IStream >& archiveStream, const TString& password, ListCallback* callback)
+	bool SevenZipLister::ListArchive(const CComPtr< IStream >& archiveStream, const TString& password, ListCallback* callback) const
 	{
 		CComPtr< IInArchive > archive = UsefulFunctions::GetArchiveReader(*m_library, m_compressionFormat);
 		CComPtr< InStreamWrapper > inFile = new InStreamWrapper(archiveStream);

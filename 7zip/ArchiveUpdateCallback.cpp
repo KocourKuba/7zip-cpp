@@ -13,8 +13,7 @@ namespace SevenZip
 	{
 
 		ArchiveUpdateCallback::ArchiveUpdateCallback(const std::vector< FilePathInfo >& filePaths, const TString& outputFilePath, const TString& password, IProgressCallback* callback)
-			: m_refCount(0)
-			, m_filePaths(filePaths)
+			: m_filePaths(filePaths)
 			, m_callback(callback)
 			, m_outputPath(outputFilePath)
 			, m_password(password)
@@ -97,7 +96,7 @@ namespace SevenZip
 			return S_OK;
 		}
 
-		STDMETHODIMP ArchiveUpdateCallback::GetUpdateItemInfo(UInt32 index, Int32* newData, Int32* newProperties, UInt32* indexInArchive)
+		STDMETHODIMP ArchiveUpdateCallback::GetUpdateItemInfo(UInt32 /*index*/, Int32* newData, Int32* newProperties, UInt32* indexInArchive)
 		{
 			// Setting info for Create mode (vs. Append mode).
 			// TODO: support append mode
@@ -175,6 +174,11 @@ namespace SevenZip
 				}
 
 				void* lpData = GlobalLock(hGlobal);
+				if (lpData == nullptr)
+				{
+					return E_OUTOFMEMORY;
+				}
+
 				memcpy(lpData, fileInfo.memPointer, (SIZE_T)fileInfo.Size);
 				GlobalUnlock(hGlobal);
 				hr = CreateStreamOnHGlobal(hGlobal, TRUE, &outStream);
@@ -196,7 +200,7 @@ namespace SevenZip
 			return CheckBreak();
 		}
 
-		STDMETHODIMP ArchiveUpdateCallback::SetOperationResult(Int32 operationResult)
+		STDMETHODIMP ArchiveUpdateCallback::SetOperationResult(Int32 /*operationResult*/)
 		{
 			return CheckBreak();
 		}
@@ -211,7 +215,7 @@ namespace SevenZip
 			return S_OK;
 		}
 
-		STDMETHODIMP ArchiveUpdateCallback::SetRatioInfo(const UInt64* inSize, const UInt64* outSize)
+		STDMETHODIMP ArchiveUpdateCallback::SetRatioInfo(const UInt64* /*inSize*/, const UInt64* /*outSize*/)
 		{
 			return CheckBreak();
 		}

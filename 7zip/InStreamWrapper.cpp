@@ -8,8 +8,7 @@ namespace SevenZip
 	{
 
 		InStreamWrapper::InStreamWrapper(const CComPtr< IStream >& baseStream)
-			: m_refCount(0)
-			, m_baseStream(baseStream)
+			: m_baseStream(baseStream)
 		{
 		}
 
@@ -75,8 +74,8 @@ namespace SevenZip
 
 		STDMETHODIMP InStreamWrapper::Seek(Int64 offset, UInt32 seekOrigin, UInt64* newPosition)
 		{
-			LARGE_INTEGER move;
-			ULARGE_INTEGER newPos;
+			LARGE_INTEGER move{};
+			ULARGE_INTEGER newPos{};
 
 			move.QuadPart = offset;
 			HRESULT hr = m_baseStream->Seek(move, seekOrigin, &newPos);

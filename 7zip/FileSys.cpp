@@ -22,7 +22,7 @@ namespace SevenZip
 			ScannerCallback(bool recursive, bool onlyFirst = false) : m_recursive(recursive), m_onlyFirst(onlyFirst) {}
 			const std::vector< FilePathInfo >& GetFiles() { return m_files; }
 
-			bool ShouldDescend(const FilePathInfo& directory) override { return m_recursive; }
+			bool ShouldDescend(const FilePathInfo& /*directory*/) override { return m_recursive; }
 			void ExamineFile(const FilePathInfo& file, bool& exit) override
 			{
 				m_files.push_back(file);
@@ -45,8 +45,8 @@ namespace SevenZip
 			IsEmptyCallback() : m_isEmpty(true) {}
 			bool IsEmpty() const { return m_isEmpty; }
 
-			bool ShouldDescend(const FilePathInfo& directory) override { return true; }
-			void ExamineFile(const FilePathInfo& file, bool& exit) override { m_isEmpty = false; exit = true; }
+			bool ShouldDescend(const FilePathInfo& /*directory*/) override { return true; }
+			void ExamineFile(const FilePathInfo& /*file*/, bool& exit) override { m_isEmpty = false; exit = true; }
 		};
 
 
@@ -64,7 +64,7 @@ namespace SevenZip
 			if (index == std::string::npos)
 			{
 				// No path sep.
-				return TString();
+				return {};
 			}
 
 			if (index + 1 >= filePath.size())
@@ -96,7 +96,7 @@ namespace SevenZip
 			if (index + 1 >= filePathOrName.size())
 			{
 				// Last char is path sep, no filename.
-				return TString();
+				return {};
 			}
 
 			return filePathOrName.substr(index + 1, filePathOrName.size() - (index + 1));
@@ -122,12 +122,12 @@ namespace SevenZip
 		{
 			if (basePath.size() >= fullPath.size())
 			{
-				return TString();
+				return {};
 			}
 
 			if (basePath != fullPath.substr(0, basePath.size()))
 			{
-				return TString();
+				return {};
 			}
 
 			return fullPath.substr(basePath.size(), fullPath.size() - basePath.size());

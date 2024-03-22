@@ -12,7 +12,7 @@ namespace SevenZip
 	namespace intl
 	{
 
-		const TString EmptyFileAlias = _T("[Content]");
+		static const TString EmptyFileAlias = _T("[Content]");
 
 
 		MemExtractCallback::MemExtractCallback(const CComPtr< IInArchive >& archiveHandler,
@@ -20,8 +20,7 @@ namespace SevenZip
 											   const TString& archivePath,
 											   const TString& password,
 											   IProgressCallback* callback)
-			: m_refCount(0)
-			, m_archiveHandler(archiveHandler)
+			: m_archiveHandler(archiveHandler)
 			, m_buffer(buffer)
 			, m_archivePath(archivePath)
 			, m_callback(callback)
@@ -80,7 +79,7 @@ namespace SevenZip
 			return CheckBreak();
 		}
 
-		STDMETHODIMP MemExtractCallback::SetCompleted(const UInt64* completeValue)
+		STDMETHODIMP MemExtractCallback::SetCompleted(const UInt64* /*completeValue*/)
 		{
 			//Callback Event calls
 			/*
@@ -137,7 +136,7 @@ namespace SevenZip
 			return CheckBreak();
 		}
 
-		STDMETHODIMP MemExtractCallback::PrepareOperation(Int32 askExtractMode)
+		STDMETHODIMP MemExtractCallback::PrepareOperation(Int32 /*askExtractMode*/)
 		{
 			return S_OK;
 		}

@@ -6,7 +6,7 @@
 namespace SevenZip
 {
 
-	const TString DefaultLibraryPath = _T("7z.dll");
+	static const TString DefaultLibraryPath = _T("7z.dll");
 
 	SevenZipLibrary::~SevenZipLibrary()
 	{

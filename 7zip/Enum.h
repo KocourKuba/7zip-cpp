@@ -86,7 +86,7 @@ namespace SevenZip
 						return it->string;
 					}
 				}
-				return TString();
+				return {};
 			}
 		};
 

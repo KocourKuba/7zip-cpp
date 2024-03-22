@@ -28,7 +28,7 @@ namespace SevenZip
 			return false;	//Could not open archive
 		}
 
-		return ExtractFilesFromArchive(archiveStream, nullptr, -1, destDirectory, callback);
+		return ExtractFilesFromArchive(archiveStream, nullptr, UINT_MAX, destDirectory, callback);
 	}
 
 	bool SevenZipExtractor::ExtractFilesFromArchive(const unsigned int* fileIndices,

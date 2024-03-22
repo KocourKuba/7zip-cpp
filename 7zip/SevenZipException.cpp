@@ -7,17 +7,14 @@ namespace SevenZip
 
 	TString StrFmt(const TCHAR* format, ...)
 	{
-		TString result;
-		TCHAR*	buffer;
-		int		sz;
 		va_list	args;
 
 		va_start(args, format);
 
-		sz = _vsctprintf(format, args) + 1;
-		buffer = new TCHAR[sz];
+		int sz = _vsctprintf(format, args) + 1;
+		TCHAR* buffer = new TCHAR[sz];
 		_vsntprintf_s(buffer, sz, _TRUNCATE, format, args);
-		result = buffer;
+		TString result(buffer);
 		delete[] buffer;
 
 		va_end(args);

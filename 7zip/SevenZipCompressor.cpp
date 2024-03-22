@@ -15,7 +15,7 @@ namespace SevenZip
 	using namespace intl;
 
 
-	const TString SearchPatternAllFiles = _T("*");
+	static const TString SearchPatternAllFiles = _T("*");
 
 	SevenZipCompressor::SevenZipCompressor(SevenZipLibrary* library, const TString& archivePath)
 		: SevenZipArchive(library, archivePath)

@@ -10,8 +10,7 @@ namespace SevenZip
 	{
 
 		ArchiveOpenCallback::ArchiveOpenCallback(const TString& password)
-			: m_refCount(0)
-			, m_password(password)
+			: m_password(password)
 		{
 		}
 
@@ -56,12 +55,12 @@ namespace SevenZip
 			return res;
 		}
 
-		STDMETHODIMP ArchiveOpenCallback::SetTotal(const UInt64* files, const UInt64* bytes)
+		STDMETHODIMP ArchiveOpenCallback::SetTotal(const UInt64* /*files*/, const UInt64* /*bytes*/)
 		{
 			return S_OK;
 		}
 
-		STDMETHODIMP ArchiveOpenCallback::SetCompleted(const UInt64* files, const UInt64* bytes)
+		STDMETHODIMP ArchiveOpenCallback::SetCompleted(const UInt64* /*files*/, const UInt64* /*bytes*/)
 		{
 			return S_OK;
 		}
