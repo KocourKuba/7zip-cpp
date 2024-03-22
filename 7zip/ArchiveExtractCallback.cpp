@@ -13,16 +13,15 @@ namespace SevenZip
 	namespace intl
 	{
 
-		const TString EmptyFileAlias = _T("[Content]");
+		static const TString EmptyFileAlias = _T("[Content]");
 
 
 		ArchiveExtractCallback::ArchiveExtractCallback(const CComPtr< IInArchive >& archiveHandler, const TString& directory, const TString& archivePath, const TString& password, IProgressCallback* callback)
-			: m_refCount(0)
-			, m_archiveHandler(archiveHandler)
+			: m_archiveHandler(archiveHandler)
 			, m_directory(directory)
+			, m_password(password)
 			, m_archivePath(archivePath)
 			, m_callback(callback)
-			, m_password(password)
 		{
 		}
 
@@ -155,7 +154,7 @@ namespace SevenZip
 				return S_OK;
 			}
 
-			TString absDir = FileSys::GetPath(m_absPath);
+			const TString absDir = FileSys::GetPath(m_absPath);
 			FileSys::CreateDirectoryTree(absDir);
 
 			CComPtr< IStream > fileStream = FileSys::OpenFileToWrite(m_absPath);

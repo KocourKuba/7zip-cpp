@@ -18,7 +18,7 @@ namespace SevenZip
 		{
 		private:
 
-			long m_refCount;
+			long m_refCount = 0;
 			CComPtr< IInArchive > m_archiveHandler;
 			TString m_directory;
 
@@ -26,18 +26,18 @@ namespace SevenZip
 
 			TString m_relPath;
 			TString m_absPath;
-			bool m_isDir;
+			bool m_isDir = false;
 
 			TString m_archivePath;
 
-			bool m_hasAttrib;
-			UInt32 m_attrib;
+			bool m_hasAttrib = false;
+			UInt32 m_attrib = 0;
 
-			bool m_hasModifiedTime;
-			FILETIME m_modifiedTime;
+			bool m_hasModifiedTime = false;
+			FILETIME m_modifiedTime{};
 
-			bool m_hasNewFileSize;
-			UInt64 m_newFileSize;
+			bool m_hasNewFileSize = false;
+			UInt64 m_newFileSize = 0;
 
 			IProgressCallback* m_callback;
 
