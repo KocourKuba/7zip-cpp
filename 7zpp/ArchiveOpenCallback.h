@@ -1,7 +1,7 @@
 // This file is based on the following file from the LZMA SDK (http://www.7-zip.org/sdk.html):
 #pragma once
-#include <7zip/Archive/IArchive.h>
-#include <7zip/IPassword.h>
+#include <7zip/CPP/7zip/Archive/IArchive.h>
+#include <7zip/CPP/7zip/IPassword.h>
 
 
 namespace SevenZip

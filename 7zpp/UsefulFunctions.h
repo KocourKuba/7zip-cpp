@@ -1,7 +1,8 @@
 #pragma once
 
-#include <7zip/Archive/IArchive.h>
-#include <7zTypes.h>
+#include <7zip/CPP/7zip/Archive/IArchive.h>
+#include <7zip/C/7zTypes.h>
+
 #include "SevenZipLibrary.h"
 #include "CompressionFormat.h"
 #include "GUIDs.h"

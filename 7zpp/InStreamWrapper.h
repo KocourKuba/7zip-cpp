@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <7zip/IStream.h>
+#include <7zip/CPP/7zip/IStream.h>
 
 
 namespace SevenZip

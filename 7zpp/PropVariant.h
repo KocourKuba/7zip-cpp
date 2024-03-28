@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include <Common/MyTypes.h>
+#include <7zip/CPP/Common/MyTypes.h>
 
 
 namespace SevenZip

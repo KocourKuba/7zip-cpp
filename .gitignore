@@ -22,13 +22,14 @@
 # Compilation Directories
 /Lib
 /Exe
-/7Zip/Intermediate
+/7zpp/Intermediate
 /dll
 /Debug Unicode/
 /Debug/
 /Release Unicode
 /Release
 export/
+/vcpkg_installed 
 **/x64/
 
 # Misc
