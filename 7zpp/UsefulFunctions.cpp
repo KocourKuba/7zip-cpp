@@ -14,39 +14,39 @@ namespace SevenZip
 
 		switch (format)
 		{
-		case CompressionFormat::Zip:
+		case CompressionFormat::_Format::Zip:
 			guid = &SevenZip::intl::CLSID_CFormatZip;
 			break;
 
-		case CompressionFormat::GZip:
+		case CompressionFormat::_Format::GZip:
 			guid = &SevenZip::intl::CLSID_CFormatGZip;
 			break;
 
-		case CompressionFormat::BZip2:
+		case CompressionFormat::_Format::BZip2:
 			guid = &SevenZip::intl::CLSID_CFormatBZip2;
 			break;
 
-		case CompressionFormat::Rar:
+		case CompressionFormat::_Format::Rar:
 			guid = &SevenZip::intl::CLSID_CFormatRar;
 			break;
 
-		case CompressionFormat::Tar:
+		case CompressionFormat::_Format::Tar:
 			guid = &SevenZip::intl::CLSID_CFormatTar;
 			break;
 
-		case CompressionFormat::Iso:
+		case CompressionFormat::_Format::Iso:
 			guid = &SevenZip::intl::CLSID_CFormatIso;
 			break;
 
-		case CompressionFormat::Cab:
+		case CompressionFormat::_Format::Cab:
 			guid = &SevenZip::intl::CLSID_CFormatCab;
 			break;
 
-		case CompressionFormat::Lzma:
+		case CompressionFormat::_Format::Lzma:
 			guid = &SevenZip::intl::CLSID_CFormatLzma;
 			break;
 
-		case CompressionFormat::Lzma86:
+		case CompressionFormat::_Format::Lzma86:
 			guid = &SevenZip::intl::CLSID_CFormatLzma86;
 			break;
 
@@ -195,19 +195,19 @@ namespace SevenZip
 		}
 
 		// Add more formats here if 7zip supports more formats in the future
-		std::array<CompressionFormatEnum, CompressionFormat::Unknown> myAvailableFormats = {
-			CompressionFormat::Zip,
-			CompressionFormat::SevenZip,
-			CompressionFormat::Rar,
-			CompressionFormat::GZip,
-			CompressionFormat::BZip2,
-			CompressionFormat::Tar,
-			CompressionFormat::Lzma,
-			CompressionFormat::Lzma86,
-			CompressionFormat::Cab,
-			CompressionFormat::Iso,
-			CompressionFormat::Arj,
-			CompressionFormat::XZ,
+		std::array<CompressionFormatEnum, (size_t)CompressionFormat::_Format::Unknown> myAvailableFormats = {
+			CompressionFormat::_Format::Zip,
+			CompressionFormat::_Format::SevnZip,
+			CompressionFormat::_Format::Rar,
+			CompressionFormat::_Format::GZip,
+			CompressionFormat::_Format::BZip2,
+			CompressionFormat::_Format::Tar,
+			CompressionFormat::_Format::Lzma,
+			CompressionFormat::_Format::Lzma86,
+			CompressionFormat::_Format::Cab,
+			CompressionFormat::_Format::Iso,
+			CompressionFormat::_Format::Arj,
+			CompressionFormat::_Format::XZ,
 		};
 
 		// Check each format for one that works
@@ -239,7 +239,7 @@ namespace SevenZip
 		if (true)
 		{
 			size_t myNumOfItems = 0;
-			archiveCompressionFormat = CompressionFormat::GZip;
+			archiveCompressionFormat = CompressionFormat::_Format::GZip;
 			bool result = GetNumberOfItems(library, archivePath, archiveCompressionFormat, myNumOfItems, password);
 			if (result == true && myNumOfItems > 0)
 			{
@@ -249,7 +249,7 @@ namespace SevenZip
 		}
 
 		// If you get here, the format is unknown
-		archiveCompressionFormat = CompressionFormat::Unknown;
+		archiveCompressionFormat = CompressionFormat::_Format::Unknown;
 		return false;
 	}
 
@@ -257,29 +257,29 @@ namespace SevenZip
 	{
 		switch (format)
 		{
-		case CompressionFormat::Zip:
+		case CompressionFormat::_Format::Zip:
 			return _T(".zip");
-		case CompressionFormat::SevenZip:
+		case CompressionFormat::_Format::SevnZip:
 			return _T(".7z");
-		case CompressionFormat::Rar:
+		case CompressionFormat::_Format::Rar:
 			return _T(".rar");
-		case CompressionFormat::GZip:
+		case CompressionFormat::_Format::GZip:
 			return _T(".gz");
-		case CompressionFormat::BZip2:
+		case CompressionFormat::_Format::BZip2:
 			return _T(".bz");
-		case CompressionFormat::Tar:
+		case CompressionFormat::_Format::Tar:
 			return _T(".tar");
-		case CompressionFormat::Lzma:
+		case CompressionFormat::_Format::Lzma:
 			return _T(".lzma");
-		case CompressionFormat::Lzma86:
+		case CompressionFormat::_Format::Lzma86:
 			return _T(".lzma86");
-		case CompressionFormat::Cab:
+		case CompressionFormat::_Format::Cab:
 			return _T(".cab");
-		case CompressionFormat::Iso:
+		case CompressionFormat::_Format::Iso:
 			return _T(".iso");
-		case CompressionFormat::Arj:
+		case CompressionFormat::_Format::Arj:
 			return _T(".arj");
-		case CompressionFormat::XZ:
+		case CompressionFormat::_Format::XZ:
 			return _T(".xz");
 		}
 		return _T(".zip");

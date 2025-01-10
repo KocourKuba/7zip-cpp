@@ -112,8 +112,8 @@ namespace SevenZip
 	bool SevenZipCompressor::CheckValidFormat() const
 	{
 		if (m_fileList.size() > 1 &&
-			(m_compressionFormat == SevenZip::CompressionFormat::BZip2
-			 || m_compressionFormat == SevenZip::CompressionFormat::GZip)
+			(m_compressionFormat == SevenZip::CompressionFormat::_Format::BZip2
+			 || m_compressionFormat == SevenZip::CompressionFormat::_Format::GZip)
 			)
 		{
 			// Not supported by compressing format

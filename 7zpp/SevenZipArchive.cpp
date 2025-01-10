@@ -9,8 +9,8 @@ namespace SevenZip
 		: m_library(library),
 		m_archivePath(archivePath),
 		// The default compression type will be 7z
-		m_compressionFormat(CompressionFormat::SevenZip),
-		m_compressionLevel(CompressionLevel::Normal)
+		m_compressionFormat(CompressionFormat::_Format::SevnZip),
+		m_compressionLevel(CompressionLevel::_Enum::Normal)
 	{
 	}
 

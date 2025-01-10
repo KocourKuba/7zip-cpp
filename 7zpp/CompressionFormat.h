@@ -8,9 +8,9 @@ namespace SevenZip
 {
 	struct CompressionFormat
 	{
-		enum _Enum
+		enum class _Format
 		{
-			SevenZip,
+			SevnZip,
 			Zip,
 			GZip,
 			BZip2,
@@ -26,7 +26,7 @@ namespace SevenZip
 		};
 
 		using _Definition = intl::EnumerationDefinitionNoStrings;
-		using _Value = intl::EnumerationValue< _Enum, _Definition, Unknown >;
+		using _Value = intl::EnumerationValue<_Format, _Definition, _Format::Unknown>;
 	};
 
 	using CompressionFormatEnum = CompressionFormat::_Value;

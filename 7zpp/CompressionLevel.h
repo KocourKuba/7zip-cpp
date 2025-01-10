@@ -8,7 +8,7 @@ namespace SevenZip
 {
 	struct CompressionLevel
 	{
-		enum _Enum
+		enum class _Enum
 		{
 			None,
 			Fast,
@@ -16,7 +16,7 @@ namespace SevenZip
 		};
 
 		using _Definition = intl::EnumerationDefinitionNoStrings;
-		using _Value = intl::EnumerationValue< _Enum, _Definition, Normal >;
+		using _Value = intl::EnumerationValue< _Enum, _Definition, _Enum::Normal >;
 	};
 
 	using CompressionLevelEnum = CompressionLevel::_Value;
